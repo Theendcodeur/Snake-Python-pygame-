@@ -2,7 +2,7 @@ import pygame
 import random as rand
 
 from game import Game
-from time import *
+import time as t
 pygame.init()
 pygame.display.set_caption('Snake')
 
@@ -10,7 +10,7 @@ pygame.display.set_caption('Snake')
 game = Game()
 play =0
 running = True
-timing_var = 0
+time = round(t.time(), 3)
 
 def updateTitle(score):
     pygame.display.set_caption(f"Snake (Score: {score})".format(score))
@@ -46,16 +46,13 @@ while running:
                 game.on_down_arrow()
                 play = 1
                 
-    if play == 1:
-        if timing_var == 50:
-            game.run()
-            timing_var = 0
-        else:
-            timing_var +=1
+    if t.time() - time >= 0.5 and play == 1:
+        game.run()
+        time = round(t.time(), 3)
     
     updateTitle(game.score);
     if game.play == True:
         pygame.display.flip()
-    else:
+    elif game.play == False:
         running = False
 pygame.quit()
