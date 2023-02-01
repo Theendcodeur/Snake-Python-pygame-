@@ -46,7 +46,7 @@ while running:
                 game.on_down_arrow()
                 play = 1
                 
-    if t.time() - time >= 0.5 and play == 1:
+    if t.time() - time >= 0.1 and play == 1:
         game.run()
         time = round(t.time(), 3)
     
