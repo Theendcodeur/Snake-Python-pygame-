@@ -36,7 +36,11 @@ class Game:
             self.direction = "Up"
             self.allowed_to_turn = False
         elif self.allowed_to_turn == False:
-            self.previous_turn.append("Up")
+            if len(self.previous_turn) == 0:
+                if self.direction != "Down":
+                    self.previous_turn.append("Up")
+            elif self.previous_turn[len(self.previous_turn)-1] != "Down" and self.direction != "Down":
+                self.previous_turn.append("Up")
             
     def on_down_arrow(self):
             
@@ -44,7 +48,11 @@ class Game:
             self.direction = "Down"
             self.allowed_to_turn = False
         elif self.allowed_to_turn == False:
-            self.previous_turn.append("Down")
+            if len(self.previous_turn) == 0:
+                if self.direction != "Up":
+                    self.previous_turn.append("Down")
+            elif self.previous_turn[len(self.previous_turn)-1] != "Up" and self.direction != "Up":
+                self.previous_turn.append("Down")
             
     def on_left_arrow(self):
             
@@ -52,7 +60,11 @@ class Game:
             self.direction = "Left"
             self.allowed_to_turn = False
         elif self.allowed_to_turn == False:
-            self.previous_turn.append("Left")
+            if len(self.previous_turn) == 0:
+                if self.direction != "Right":
+                    self.previous_turn.append("Left")
+            elif self.previous_turn[len(self.previous_turn)-1] != "Rigth" and self.direction != "Right":
+                self.previous_turn.append("Left")
             
     def on_right_arrow(self):
             
@@ -60,9 +72,15 @@ class Game:
             self.direction = "Right"
             self.allowed_to_turn = False
         elif self.allowed_to_turn == False:
-            self.previous_turn.append("Right")
+            if len(self.previous_turn) == 0:
+                if self.direction != "Left":
+                    self.previous_turn.append("Right")
+            elif self.previous_turn[len(self.previous_turn)-1] != "Left" and self.direction != "Left":
+                self.previous_turn.append("Right")
             
     def run(self):
+        
+        print(self.previous_turn)
         
         if self.direction == "Up":
             self.snake_pos[1] -= 30
