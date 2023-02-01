@@ -80,8 +80,6 @@ class Game:
             
     def run(self):
         
-        print(self.previous_turn)
-        
         if self.direction == "Up":
             self.snake_pos[1] -= 30
         elif self.direction == "Down":
